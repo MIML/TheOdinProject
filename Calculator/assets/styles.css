@@ -1,0 +1,21 @@
+body 
+{
+    
+}
+#top{height:50px; padding: 20px 10px 10px;}
+.top{float:left; }
+#brand{font-size:2.5em; width:35%; line-height:0.8em;}
+#solopower{height:30px; background:#444; width: 30%;}
+#model{font-size:1.5em;width:35%; text-align:right; line-height: 1.5em;}
+#display{height:50px; width:84%; background:#888; margin: 0 auto; border-color: #ddd; border-style: solid; border-width: 13px 8px; border-radius: 5px; font-family: 'Press Start 2P', cursive; font-size:1.8em; line-height:2em; overflow:hidden;}
+
+#display span{float:left;}
+#calculator{width:400px; height:620px; background:#eee; margin: 50px auto 0;}
+#keypads{margin:0 auto; width:345px;}
+#col1, #col2, #col3, #col4{float:left; width:85px;}
+
+.keypad{width:80px; height:50px; text-align:center; margin:5px;color:#fff; padding-top:40%;}
+.clear{background:red;}
+.operator{background:#444;}
+.num{background:#aaa;}
+.spec{height:140px;}
