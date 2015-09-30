@@ -1,33 +1,41 @@
 (function ($) {
     var $prev = $('.prev'), $next = $('.next'), $current;
-    var sectionFrom, $slide = $('.img'), $slideActive = $('.img.active'), $navLink = $('#nav a');
+    var sectionFrom, $slide = $('.img'), $slideActive = $('.img.active'), $navLink = $('#nav li');
 
     init();
     slide();
 
+    /*
+    jquery list of images
+    image[1] = image 1
+
+    */
+
+    function animate(direction){
+        //$("#slider > ul").animate({ left: '-' + ($current * 800) + 'px' });
+        $('#img01').zIndex(0);
+        $slide.eq(2).show("slide", { direction: direction }, 4000);
+    }
+
     function slide() {
         $current = $slideActive.index();
 
-        $next.click(function () {
-            $current++;
-            if ($current > 2) {
-                $current = 0;
-            }
-            $("#slider > ul").animate({ left: '-' + ($current * 800) + 'px' });
-            console.log($current);
-        });
-        $prev.click(function () {
-            $current--;
-            if ($current < 0) {
-                $current = 2;
-            }
-            $("#slider > ul").animate({ left: '-' + ($current * 800) + 'px' });
-        });
+
+        //while($current < ('li.img').length){
+            $next.on('click', function(e){
+                animate('right');
+                //current++;
+            });
+            $prev.on('click', function(e){
+                animate('left');
+                //current--;
+            })
+        //}
     }
 
     $navLink.on('click', function (e) {
-        $('#nav li .active').remove();
-        this.parent().addClass('active');
+        $('.active').removeClass('active');
+        $(this).addClass('active');
     });
 
     function init() {
