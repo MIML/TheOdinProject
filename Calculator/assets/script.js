@@ -1,11 +1,13 @@
 $(function () {
-    var myArray = [];
 
-    // testing
-    $('.calculate').click(function () {
-        $('#display').append('<span>9</span>');
+    replaceThisTo("#division span", '/', '÷');
+    replaceThisTo('#multiplication span', '*', 'x');
 
-    });
+    function replaceThisTo(selection, before, after) {
+        $(selection).text(function (index, text) {
+            return text.replace(before, after);
+        });
+    }
 
     $('.reset').click(function () {
         $('#display span').remove('');
@@ -14,6 +16,43 @@ $(function () {
 
     $('.off').click(function () {
         $('#display span').remove('');
+        myArray = [];
     });
+
+    var myArray = [];
+
+    // a whole num - before the operator pressed
+    $(".keypad span").bind('click', function () {
+        myArray.push(this.innerText);
+        console.log(myArray);
+        $('#display').append('<span>' + myArray + '</span>');
+    });
+
+
+    // display calculation result
+    $('.calculate').click(function () {
+        calculation(x, y);
+    });
+
+
+    function calculation(x, y) {
+        switch (operator) {
+            case '+':
+                return x + y;
+                break;
+            case '-':
+                return x - y;
+                break;
+            case '*':
+                return x * y;
+                break;
+            case '/':
+                return x / y;
+                break;
+            default:
+                return 0;
+        }
+    }
+
 
 });
