@@ -16,27 +16,37 @@ $(function () {
 
     $('.off').click(function () {
         $('#display span').remove('');
-        myArray = [];
+        num1 = num2 = [];
+        console.log(num1);
+        console.log(num2);
     });
 
-    var myArray = [];
+    var operator = $('.operator'), num1 = [], num2 = [];
 
-    // a whole num - before the operator pressed
-    $(".keypad span").bind('click', function () {
-        myArray.push(this.innerText);
-        console.log(myArray);
-        $('#display').append('<span>' + myArray + '</span>');
+    function fnNum(num) {
+        $(".num span").bind('click', function () {
+            num.push(parseFloat(this.innerText));
+            $('#display span').remove('');
+            $('#display').append('<span>' + num.join('') + '</span>');
+        });
+    }
+
+
+    fnNum(num1);
+    operator.click(function () {
+        fnNum(num2);
     });
-
 
     // display calculation result
     $('.calculate').click(function () {
-        calculation(x, y);
+        $('#display span').remove('');
+        $('#display').append('<span>' + (num1 + num2) + '</span>');
     });
 
 
     function calculation(x, y) {
-        switch (operator) {
+        switch ($(this).operator) {
+
             case '+':
                 return x + y;
                 break;
