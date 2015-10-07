@@ -9,7 +9,7 @@ body
 #model{font-size:1.5em;width:35%; text-align:right; line-height: 1.5em;}
 #display{height:50px; width:84%; background:#888; margin: 0 auto; border-color: #ddd; border-style: solid; border-width: 13px 8px; border-radius: 5px; font-family: 'Press Start 2P', cursive; font-size:1.8em; line-height:2em; overflow:hidden;}
 
-#display span{float:left;}
+#display span{float:right;}
 #calculator{width:400px; height:620px; background:#eee; margin: 50px auto 0;}
 #keypads{margin:0 auto; width:345px;}
 #col1, #col2, #col3, #col4{float:left; width:85px;}
