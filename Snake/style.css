@@ -1,0 +1,8 @@
+body{background: black; color: white;}
+.red{border: 1px solid green; width:10px; height:10px; float: left;}
+.yellow:after{
+    content:"\000A";
+    white-space: pre;
+}
+.yellow{height: 12px; }
+.highlight{background: white; width:10px; height: 10px;}
