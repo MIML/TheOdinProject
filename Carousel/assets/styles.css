@@ -25,4 +25,4 @@ ul{ padding:0; margin:0; }
 #sliderWrapper{background:#eee; position: relative;}
 #slider { position: relative; overflow:hidden; margin: 0 auto; width:800px; height:600px;}
 #slider ul { list-style: none; width:2400px; position:absolute; top:0; left:0;} 
-#slider li { float:left; margin:0; padding:0;}
+#slider li { float:left; margin:0; padding:0; position: relative; z-index: 0;}

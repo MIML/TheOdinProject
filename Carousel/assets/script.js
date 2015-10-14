@@ -5,28 +5,19 @@
     init();
     slide();
 
-    function animate(){
-        $("#slider > ul").animate({ left: '-' + ($current * 800) + 'px' });
+    function animate(direction){
+        $('#img01').zIndex(1);
+        $slide.eq(1).show("slide", { direction: direction }, 4000);
+        $('#img02').zIndex(2);
     }
 
-
     function slide() {
-        $current = $slideActive.index();
-
-        $next.click(function () {
-            $current++;
-            if ($current > 2) {
-                $current = 0;
-            }
-            animate();
+        $next.on('click', function(e){
+            animate('right');
         });
-        $prev.click(function () {
-            $current--;
-            if ($current < 0) {
-                $current = 2;
-            }
-            animate();
-        });
+        $prev.on('click', function(e){
+            animate('left');
+        })
     }
 
     $navLink.on('click', function (e) {
