@@ -1,9 +1,11 @@
 body{background: black; color: white;}
+#container{width:120px; height:120px;  position:relative; overflow:hidden;}
 button{background:#555; border:none; margin:20px 10px 10px;}
-.grid{border: 1px solid red; width:10px; height:10px; float: left;}
+.grid{border: 1px solid red; width:8px; height:8px; float: left; position:relative;}
 .row:after{
     content:"\000A";
     white-space: pre;
 }
-.row{height: 12px; }
-.snake{background:#777;}
+.row{height: 10px; }
+.snake{background:#777; position:absolute; z-index}
+.food{background:green;}
