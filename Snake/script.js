@@ -3,7 +3,7 @@ $(function () {
     var grids = [];
     var snake = {
         position: { x: 0, y: 0 },
-        direction: 'left',
+        direction: 'right',
         length: 1
     }, food = { x: 0, y: 0 };
 
@@ -14,7 +14,6 @@ $(function () {
 
     });
     $('#over').click(function () {
-        changeDirection();
         move(snake.direction);
     });
 
@@ -34,27 +33,57 @@ $(function () {
     }
 
     function move(dir) {
-        var animation = {};
-        animation[dir] = '+=10px';
-        $('.snake').animate(animation, 500, 'linear', function () {
-            snake.position.x += 1;
-            move(dir);
-            eatFood();
-        });
-    }
-
-    function changeDirection() {
-        // navigate the snake
         $(window).keydown(function (e) {
-            if (e.which === 37) {
-                dir = 'left';
-            } else if (e.which === 38) {
-                dir = 'top';
-            } else if (e.which === 39) {
-                dir = 'right';
-            } else {
-                dir = 'down';
+            switch (e.which) {
+                case 37:
+                    dir = 'left';
+                    break;
+                case 38:
+                    dir = 'top';
+                    break;
+                case 39:
+                    dir = 'right';
+                    break;
+                case 40:
+                    dir = 'down';
+                    break;
+                default:
+                    return;
             }
+            e.preventDefault();
+        });
+
+        var animation = {};
+        switch (dir) {
+            case 'left':
+                animation[dir] = '-=10px';
+                snake.position.x -= 1;
+                break;
+            case 'right':
+                animation['left'] = '+=10px';
+                snake.position.x += 1;
+                if ((snake.position.x > 9) || (snake.position.x < 0 )) {
+                    location.reload();
+                }
+                break;
+            case 'top':
+                animation[dir] = '=10px';
+                snake.position.y += 1;
+                break;
+            case 'down':
+                animation['top'] = '+=10px';
+                snake.position.x -= 1;
+                break;
+            default:
+                return;
+        }
+
+        eatFood();
+
+        $('.snake').animate(animation, 2000, function () {
+            console.log('snake:' + snake.position);
+            console.log(food);
+            move(dir);
         });
     }
 
@@ -62,14 +91,14 @@ $(function () {
         $("[data-x='" + food.x + "'][data-y='" + food.y + "']").addClass('food');
         $('.grid').removeClass('food');
         food.x = Math.floor(Math.random() * 10) + 1;
-        food.y = Math.floor(Math.random() * 0) + 0;
+        food.y = Math.floor(Math.random() * 10) + 1;
 
         $("[data-x='" + food.x + "'][data-y='" + food.y + "']").addClass('food');
     }
 
     // when the snake location === food location, snake's size ++
     function eatFood() {
-        if (snake.position.x == food.x) {
+        if ((snake.position.x == food.x) && (snake.position.y == food.y)) {
             snake.length += 1;
             newFood();
         }
@@ -77,7 +106,8 @@ $(function () {
 
     function killSnake() {
         // when the snake hits the boundary of the grid
-        if (snake.position.x == 0 | snake.position.y == 0) {
+        if ((snake.position.x == 0) || (snake.position.y == 0)) {
+            
             createGrid();
         }
         // when the snake hits itself
@@ -89,18 +119,5 @@ $(function () {
         }
     }
 
-    function changeDirection() {
-        // navigate the snake
-        $(window).keydown(function (e) {
-            if (e.which === 37) {
-                dir = 'left';
-            } else if (e.which === 38) {
-                dir = 'top';
-            } else if (e.which === 39) {
-                dir = 'right';
-            } else {
-                dir = 'down';
-            }
-        });
-    }
+
 });
